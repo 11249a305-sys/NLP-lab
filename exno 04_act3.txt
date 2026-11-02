@@ -1,0 +1,25 @@
+# DFA using transition table
+
+transitions = {
+    "q0": {"a": "q1", "b": "q2"},
+    "q1": {"a": "q2", "b": "q1"},
+    "q2": {"a": "q2", "b": "q2"}
+}
+
+def check(string):
+    state = "q0"
+
+    for ch in string:
+        if ch not in ["a", "b"]:
+            return "Invalid Input"
+
+        state = transitions[state][ch]
+
+    if state == "q1":
+        return "Accepted"
+
+    return "Rejected"
+
+
+string = input("Enter string: ")
+print(check(string))

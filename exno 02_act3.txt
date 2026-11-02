@@ -1,0 +1,45 @@
+from collections import Counter
+
+sentences = [
+    "I like NLP",
+    "I like Python",
+    "I study NLP"
+]
+
+words = []
+bigrams = []
+
+for sentence in sentences:
+    tokens = sentence.split()
+    words.extend(tokens)
+
+    for i in range(len(tokens)-1):
+        bigrams.append((tokens[i], tokens[i+1]))
+
+word_count = Counter(words)
+bigram_count = Counter(bigrams)
+
+def probability(sentence):
+    tokens = sentence.split()
+    p = 1
+
+    for i in range(len(tokens)-1):
+        bigram = (tokens[i], tokens[i+1])
+
+        count = bigram_count[bigram]
+        total = word_count[bigram[0]]
+
+        p *= count / total
+
+    return p
+
+s1 = "I like NLP"
+s2 = "Python like I"
+
+print(s1, ":", probability(s1))
+print(s2, ":", probability(s2))
+
+if probability(s1) > probability(s2):
+    print("I like NLP is more probable")
+else:
+    print("Python like I is more probable")

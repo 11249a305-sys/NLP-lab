@@ -1,0 +1,6 @@
+import re
+text = "Contact abc@gmail.com and xyz@gmail.com"
+pattern = r'[\w.-]+@gmail\.com'
+result = re.findall(pattern, text)
+print("Gmail Addresses:")
+print(result)

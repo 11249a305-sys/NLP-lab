@@ -1,0 +1,42 @@
+irregular_words = {
+    "mice": "mouse",
+    "geese": "goose",
+    "children": "child",
+    "men": "man",
+    "women": "woman",
+    "feet": "foot",
+    "teeth": "tooth",
+    "went": "go",
+    "ate": "eat",
+    "ran": "run",
+    "saw": "see",
+    "wrote": "write"
+}
+def analyze(word):
+    # Check irregular words
+    if word in irregular_words:
+        return irregular_words[word]
+    # Regular plural rules
+    elif word.endswith("ies"):
+        return word[:-3] + "y"
+    elif word.endswith("es"):
+        return word[:-2]
+    elif word.endswith("s"):
+        return word[:-1]
+    # Regular past tense
+    elif word.endswith("ied"):
+        return word[:-3] + "y"
+    elif word.endswith("ed"):
+        return word[:-2]
+    elif word.endswith("ing"):
+        return word[:-3]
+    else:
+        return word
+words = [
+    "mice", "geese", "children",
+    "went", "ate", "ran",
+    "cats", "studies", "played"
+]
+
+for word in words:
+    print(word, "---->", analyze(word))

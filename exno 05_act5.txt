@@ -1,0 +1,50 @@
+# Hindi Morphological Analysis
+
+# Inflectional Morphology
+inflectional = {
+    "लड़का": "लड़के",
+    "लड़की": "लड़कियाँ",
+    "किताब": "किताबें",
+    "अच्छा": "अच्छी",
+    "बच्चा": "बच्चे"
+}
+# Derivational Morphology
+derivational = {
+    "सुंदर": "सुंदरता",
+    "मित्र": "मित्रता",
+    "दूध": "दूधवाला",
+    "पढ़": "पढ़ाई",
+    "लिख": "लेखक"
+}
+print("INFLECTIONAL MORPHOLOGY")
+print("------------------------")
+for root, word in inflectional.items():
+    print(root, "-->", word)
+print("\nDERIVATIONAL MORPHOLOGY")
+print("------------------------")
+for root, word in derivational.items():
+    print(root, "-->", word)
+# Function to identify morphology
+def identify(word):
+    for root, form in inflectional.items():
+        if word == form:
+            return "Inflectional Morphology"
+    for root, form in derivational.items():
+        if word == form:
+            return "Derivational Morphology"
+    return "Word Not Found"
+# Testing
+print("\nMORPHOLOGICAL IDENTIFICATION")
+print("----------------------------")
+
+test_words = [
+    "लड़के",
+    "किताबें",
+    "अच्छी",
+    "सुंदरता",
+    "मित्रता",
+    "पढ़ाई"
+]
+
+for word in test_words:
+    print(word, "-->", identify(word))

@@ -1,0 +1,71 @@
+# Lexicon-based FST
+fst = {
+    "cat": {
+        "Noun": ["cat", "cats"]
+    },
+    "dog": {
+        "Noun": ["dog", "dogs"]
+    },
+    "book": {
+        "Noun": ["book", "books"]
+    },
+    "boy": {
+        "Noun": ["boy", "boys"]
+    },
+    "girl": {
+        "Noun": ["girl", "girls"]
+    },
+    "apple": {
+        "Noun": ["apple", "apples"]
+    },
+    "box": {
+        "Noun": ["box", "boxes"]
+    },
+    "child": {
+        "Noun": ["child", "children"]
+    },
+    "play": {
+        "Verb": ["play", "plays", "played", "playing"]
+    },
+    "walk": {
+        "Verb": ["walk", "walks", "walked", "walking"]
+    },
+    "talk": {
+        "Verb": ["talk", "talks", "talked", "talking"]
+    },
+    "run": {
+        "Verb": ["run", "runs", "ran", "running"]
+    },
+    "eat": {
+        "Verb": ["eat", "eats", "ate", "eating"]
+    },
+    "go": {
+        "Verb": ["go", "goes", "went", "going"]
+    },
+    "write": {
+        "Verb": ["write", "writes", "wrote", "writing"]
+    }
+}
+# Morphological Analysis
+def analyze(word):
+    for root, categories in fst.items():
+        for category, forms in categories.items():
+            if word in forms:
+                return root, category
+    return "Not Found", "Unknown"
+# Morphological Generation
+def generate(root):
+    if root in fst:
+        for category, forms in fst[root].items():
+            return category, forms
+    return "Not Found", []
+# Analysis Testing
+print("MORPHOLOGICAL ANALYSIS")
+words = ["cats", "children", "played", "running", "went"]
+for word in words:
+    print(word, "-->", analyze(word))
+# Generation Testing
+print("\nMORPHOLOGICAL GENERATION")
+roots = ["cat", "child", "play", "run", "go"]
+for root in roots:
+    print(root, "-->", generate(root))

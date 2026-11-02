@@ -1,0 +1,30 @@
+grammars = {
+    "College": {
+        "NP": ["Student", "Teacher", "Principal"],
+        "VP": ["attends class", "teaches NLP", "conducts exams"]
+    },
+
+    "Hospital": {
+        "NP": ["Doctor", "Patient", "Nurse"],
+        "VP": ["treats patient", "checks health", "gives medicine"]
+    },
+
+    "Library": {
+        "NP": ["Student", "Librarian", "Teacher"],
+        "VP": ["borrows books", "returns books", "issues books"]
+    },
+
+    "Banking System": {
+        "NP": ["Customer", "Manager", "Employee"],
+        "VP": ["deposits money", "withdraws money",
+               "checks balance"]
+    }
+}
+
+for system, grammar in grammars.items():
+    print("\n", system, "System")
+    print("--------------------")
+
+    for subject in grammar["NP"]:
+        for action in grammar["VP"]:
+            print(subject, action)

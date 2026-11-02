@@ -1,0 +1,14 @@
+# DFA for binary numbers divisible by 2
+
+def divisible_by_2(binary):
+    if not binary or any(ch not in "01" for ch in binary):
+        return "Invalid Binary Number"
+
+    if binary[-1] == "0":
+        return "Accepted"
+
+    return "Rejected"
+
+
+binary = input("Enter binary number: ")
+print(divisible_by_2(binary))

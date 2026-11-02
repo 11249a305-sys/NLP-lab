@@ -1,0 +1,24 @@
+from collections import Counter
+
+sentences = [
+    "I like NLP",
+    "I like Python",
+    "I study NLP"
+]
+
+words = []
+bigrams = []
+
+for sentence in sentences:
+    tokens = sentence.split()
+
+    words.extend(tokens)
+
+    for i in range(len(tokens) - 1):
+        bigrams.append((tokens[i], tokens[i+1]))
+
+print("Word Frequency:")
+print(Counter(words))
+
+print("\nBigram Frequency:")
+print(Counter(bigrams))

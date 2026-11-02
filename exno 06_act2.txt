@@ -1,0 +1,33 @@
+
+from nltk import word_tokenize
+from collections import defaultdict
+
+text = "I love NLP. I love Python. NLP is interesting."
+
+words = word_tokenize(text.lower())
+
+bigrams = list(zip(words[:-1], words[1:]))
+
+bigram_count = defaultdict(lambda: defaultdict(int))
+unigram_count = defaultdict(int)
+
+for w1, w2 in bigrams:
+    bigram_count[w1][w2] += 1
+    unigram_count[w1] += 1
+
+# Calculate probability matrix
+prob_matrix = {}
+
+for w1 in bigram_count:
+    prob_matrix[w1] = {}
+    for w2 in bigram_count[w1]:
+        prob_matrix[w1][w2] = (
+            bigram_count[w1][w2] / unigram_count[w1]
+        )
+
+# Print probability table
+print("Bigram Probability Matrix")
+
+for w1 in prob_matrix:
+    for w2 in prob_matrix[w1]:
+        print(w1, "->", w2, ":", prob_matrix[w1][w2])

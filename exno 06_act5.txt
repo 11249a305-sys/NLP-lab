@@ -1,0 +1,41 @@
+
+import random
+from nltk.util import ngrams
+from collections import defaultdict
+text = """
+Natural language processing is an interesting field.
+Natural language processing helps computers understand human language.
+Machine learning is used in natural language processing.
+"""
+words = text.lower().split()
+# Build bigram model
+bigram_model = defaultdict(list)
+for w1, w2 in ngrams(words, 2):
+    bigram_model[w1].append(w2)
+# Build trigram model
+trigram_model = defaultdict(list)
+for w1, w2, w3 in ngrams(words, 3):
+    trigram_model[(w1, w2)].append(w3)
+# Generate bigram sentence
+def generate_bigram(start, length=12):
+    result = [start]
+    for _ in range(length - 1):
+        choices = bigram_model.get(result[-1])
+        if not choices:
+            break
+        result.append(random.choice(choices))
+    return " ".join(result)
+# Generate trigram sentence
+def generate_trigram(start1, start2, length=12):
+    result = [start1, start2]
+    for _ in range(length - 2):
+        context = (result[-2], result[-1])
+        choices = trigram_model.get(context)
+        if not choices:
+            break
+        result.append(random.choice(choices))
+    return " ".join(result)
+print("Bigram Generated Text:")
+print(generate_bigram("natural"))
+print("\nTrigram Generated Text:")
+print(generate_trigram("natural", "language"))

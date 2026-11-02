@@ -1,0 +1,6 @@
+NP = ["John", "Mary"]
+VP = ["eats"]
+for subject in NP:
+    for verb in VP:
+        for object in NP:
+            print(subject, verb, object)

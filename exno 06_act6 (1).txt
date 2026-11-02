@@ -1,0 +1,24 @@
+
+from collections import Counter
+import math
+text = "I love NLP. I love Python. NLP is interesting."
+words = text.lower().replace(".", "").split()
+unigram_count = Counter(words)
+bigram_count = Counter(zip(words[:-1], words[1:]))
+vocab_size = len(unigram_count)
+def bigram_probability(w1, w2, k):
+    numerator = bigram_count[(w1, w2)] + k
+    denominator = unigram_count[w1] + k * vocab_size
+    return numerator / denominator
+def sentence_probability(sentence, k):
+    tokens = sentence.lower().split()
+    probability = 1.0
+    for i in range(len(tokens) - 1):
+        probability *= bigram_probability(
+            tokens[i], tokens[i + 1], k
+        )
+    return probability
+sentence = "I love Python"
+for k in [0, 0.5, 1, 2]:
+    p = sentence_probability(sentence, k)
+    print("k =", k, "Probability =", p)

@@ -1,0 +1,16 @@
+def morph_analyze(word):
+ rules = [
+ ('ies', 'y', '+PLURAL'),
+ ('es', '', '+PLURAL'),
+ ('s', '', '+PLURAL'),
+ ('ing', '', '+PROG'),
+ ('ed', '', '+PAST'),
+ ]
+ for suffix, replacement, tag in rules:
+ if word.endswith(suffix):
+ root = word[:-len(suffix)] + replacement
+ return f"{root}{tag}"
+ return f"{word}+ROOT"
+test_words = ['cats', 'boxes', 'flies', 'playing', 'jumped', 'book']
+for w in test_words:
+ print(f"{w:10} -> {morph_analyze(w)}")

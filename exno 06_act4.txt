@@ -1,0 +1,34 @@
+
+import nltk
+from nltk.corpus import gutenberg
+from nltk import FreqDist
+from nltk.util import ngrams
+from collections import Counter
+# Download Gutenberg corpus
+nltk.download('gutenberg')
+nltk.download('punkt')
+nltk.download('punkt_tab')
+# Load corpus
+words = gutenberg.words('austen-emma.txt')
+words = [w.lower() for w in words if w.isalpha()]
+# 1. Unigram probabilities
+unigrams = FreqDist(words)
+print("\nTop 10 Unigrams:")
+for word, count in unigrams.most_common(10):
+    print(word, ":", count / len(words))
+# 2. Bigram probabilities
+bigrams = list(ngrams(words, 2))
+bigram_count = Counter(bigrams)
+unigram_count = Counter(words)
+print("\nBigram Probabilities:")
+for (w1, w2), count in bigram_count.most_common(10):
+    probability = count / unigram_count[w1]
+    print(w1, w2, ":", probability)
+# 3. Trigram probabilities
+trigrams = list(ngrams(words, 3))
+trigram_count = Counter(trigrams)
+bigram_context = Counter(ngrams(words, 2))
+print("\nTrigram Probabilities:")
+for (w1, w2, w3), count in trigram_count.most_common(10):
+    probability = count / bigram_context[(w1, w2)]
+    print(w1, w2, w3, ":", probability)

@@ -1,0 +1,20 @@
+states = ["q0", "q1", "q2"]
+
+current_state = "q0"
+
+transitions = {
+    "q0": {"a": "q1", "b": "q2"},
+    "q1": {"a": "q2", "b": "q1"},
+    "q2": {"a": "q2", "b": "q2"}
+}
+
+string = input("Enter input symbols: ")
+
+for symbol in string:
+    current_state = transitions[current_state][symbol]
+    print("Current State:", current_state)
+
+if current_state == "q1":
+    print("String Accepted")
+else:
+    print("String Rejected")

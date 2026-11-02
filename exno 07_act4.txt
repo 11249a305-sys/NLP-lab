@@ -1,0 +1,16 @@
+from nltk.tag import brill, brill_trainer
+
+baseline_tagger = UnigramTagger(train_data)  # from Activity 3
+
+templates = brill.brill24()  # rule templates
+
+trainer = brill_trainer.BrillTaggerTrainer(
+    baseline_tagger,
+    templates,
+    trace=3
+)
+
+brill_tagger = trainer.train(train_data, max_rules=100)
+
+print('Baseline accuracy:', baseline_tagger.accuracy(test_data))
+print('Brill accuracy :', brill_tagger.accuracy(test_data))

@@ -1,0 +1,18 @@
+import nltk
+sentence = "The student is reading a book in the library."
+tokens = nltk.word_tokenize(sentence)
+tagged = nltk.pos_tag(tokens)
+basic_grammar = r"""
+    NP: {<DT>?<JJ.*>*<NN.*>+}
+    VP: {<MD>?<VB.*>+}
+    PP: {<IN><NP>}
+"""
+improved_grammar = r"""
+    NP: {<DT>?<JJ.*>*<NN.*>+}
+    PP: {<IN><NP>}
+    VP: {<MD>?<VB.*>+<NP|PP>*}
+"""
+print("Basic Grammar:")
+print(nltk.RegexpParser(basic_grammar).parse(tagged))
+print("\nImproved Grammar:")
+print(nltk.RegexpParser(improved_grammar).parse(tagged))

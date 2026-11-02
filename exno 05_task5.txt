@@ -1,0 +1,45 @@
+data = [
+    ("happy", "happiness", "-ness", "Derivational"),
+    ("walk", "walked", "-ed", "Inflectional"),
+    ("national", "nationalize", "-ize", "Derivational"),
+    ("book", "books", "-s", "Inflectional"),
+    ("kind", "unkind", "un-", "Derivational"),
+    ("run", "running", "-ing", "Inflectional")
+]
+print("Task 5 - Inflectional vs. Derivational Classification")
+print()
+print("{:<12} {:<18} {:<10} {}".format(
+    "Base Word", "Derived Word", "Affix", "Type"))
+print("-" * 65)
+for base, word, affix, typ in data:
+    print("{:<12} {:<18} {:<10} {}".format(
+        base, word, affix, typ))
+
+words = [
+    "playing",
+    "played",
+    "plays",
+    "studies",
+    "happiness",
+    "unhappiness",
+    "nationalization",
+    "flies",
+    "running"
+]
+
+stems = {
+    "playing": "play",
+    "played": "play",
+    "plays": "play",
+    "studies": "studi",
+    "happiness": "happi",
+    "unhappiness": "unhappi",
+    "nationalization": "nation",
+    "flies": "fli",
+    "running": "run"
+}
+print("\n5. Sample Output")
+print("{:<20} {}".format("Word", "Stem"))
+print("-" * 30)
+for word in words:
+    print("{:<20} {}".format(word, stems[word]))

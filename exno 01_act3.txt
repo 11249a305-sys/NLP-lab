@@ -1,0 +1,14 @@
+grammar = {
+    "NP": ["John", "Mary", "Student"],
+    "VP": ["eats", "studies NLP"]
+}
+
+print("Generated Sentences:\n")
+
+for subject in grammar["NP"]:
+    for verb in grammar["VP"]:
+        if verb == "eats":
+            for obj in grammar["NP"]:
+                print(subject + " " + verb + " " + obj)
+        else:
+            print(subject + " " + verb)

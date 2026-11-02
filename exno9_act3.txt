@@ -1,0 +1,12 @@
+import nltk
+phrases = ["a student", "the very intelligent student"]
+grammar = r"""
+    NP: {<DT>?<RB>*<JJ>*<NN.*>+}
+"""
+parser = nltk.RegexpParser(grammar)
+for phrase in phrases:
+    tokens = nltk.word_tokenize(phrase)
+    tagged = nltk.pos_tag(tokens)
+    result = parser.parse(tagged)
+    print("\nPhrase:", phrase)
+    print(result)

@@ -1,0 +1,20 @@
+
+# Training data
+training_text = "I love natural language processing and Python"
+training_words = training_text.lower().split()
+# Training vocabulary
+vocabulary = set(training_words)
+# Test sentence
+test_sentence = "I love artificial intelligence and Python"
+test_words = test_sentence.lower().split()
+# Calculate OOV words
+oov_words = [
+    word for word in test_words
+    if word not in vocabulary
+]
+# Calculate OOV rate
+oov_rate = len(oov_words) / len(test_words)
+print("Training Vocabulary:", vocabulary)
+print("OOV Words:", oov_words)
+print("OOV Count:", len(oov_words))
+print("OOV Rate:", oov_rate * 100, "%")

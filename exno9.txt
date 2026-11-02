@@ -1,0 +1,11 @@
+import nltk
+sentence = "The boy plays in the garden."
+tokens = nltk.word_tokenize(sentence)
+tagged = nltk.pos_tag(tokens)
+grammar = r"""
+    NP: {<DT>?<JJ>*<NN.*>+}
+    PP: {<IN><NP>}
+"""
+parser = nltk.RegexpParser(grammar)
+tree = parser.parse(tagged)
+print(tree)

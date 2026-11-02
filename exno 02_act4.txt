@@ -1,0 +1,34 @@
+
+from collections import Counter
+
+sentences = [
+    "I like NLP",
+    "I like Python",
+    "I study NLP"
+]
+
+words = []
+bigrams = []
+
+for sentence in sentences:
+    tokens = sentence.split()
+    words.extend(tokens)
+
+    for i in range(len(tokens)-1):
+        bigrams.append((tokens[i], tokens[i+1]))
+
+word_count = Counter(words)
+bigram_count = Counter(bigrams)
+
+vocab_size = len(set(words))
+
+word = "like"
+next_word = "NLP"
+
+count = bigram_count[(word, next_word)]
+total = word_count[word]
+
+prob = (count + 1) / (total + vocab_size)
+
+print("Bigram Probability with Laplace Smoothing:")
+print(prob)

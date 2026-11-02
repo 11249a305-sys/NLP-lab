@@ -1,0 +1,22 @@
+
+from nltk import word_tokenize
+from nltk.util import ngrams
+from collections import Counter
+
+text = "I love natural language processing. I love Python programming."
+
+words = word_tokenize(text.lower())
+
+quadgrams = list(ngrams(words, 4))
+
+quadgram_count = Counter(quadgrams)
+trigram_count = Counter(ngrams(words, 3))
+
+print("Quadgram Probabilities:")
+
+for q in quadgram_count:
+    context = q[:3]
+
+    probability = quadgram_count[q] / trigram_count[context]
+
+    print(q, ":", probability)

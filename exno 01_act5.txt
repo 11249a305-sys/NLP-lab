@@ -1,0 +1,27 @@
+grammar = {
+    "Customer": ["Customer"],
+    "Action": [
+        "searches for a product",
+        "adds a product to cart",
+        "removes a product from cart",
+        "places an order"
+    ],
+    "Product": ["Laptop", "Mobile", "Headphones"],
+    "Payment": [
+        "pays using Credit Card",
+        "pays using UPI",
+        "pays using Net Banking"
+    ]
+}
+
+print("ONLINE SHOPPING SYSTEM\n")
+
+for customer in grammar["Customer"]:
+    for action in grammar["Action"]:
+        for product in grammar["Product"]:
+            print(customer, action, product)
+
+print("\nPayment Options:\n")
+
+for payment in grammar["Payment"]:
+    print(payment)

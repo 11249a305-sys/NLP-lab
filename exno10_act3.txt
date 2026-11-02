@@ -1,0 +1,18 @@
+import nltk
+sentence = "The student reads a book in the library."
+tokens = nltk.word_tokenize(sentence)
+tagged = nltk.pos_tag(tokens)
+np_grammar = r"""
+    NP: {<DT>?<JJ.*>*<NN.*>+}
+"""
+full_grammar = r"""
+    NP: {<DT>?<JJ.*>*<NN.*>+}
+    VP: {<MD>?<VB.*>+}
+    PP: {<IN><NP>}
+"""
+np_chunker = nltk.RegexpParser(np_grammar)
+full_chunker = nltk.RegexpParser(full_grammar)
+print("NP Only:")
+print(np_chunker.parse(tagged))
+print("\nNP + VP + PP:")
+print(full_chunker.parse(tagged))

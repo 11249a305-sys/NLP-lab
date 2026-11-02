@@ -1,0 +1,17 @@
+
+import nltk
+from nltk import FreqDist
+from nltk.tokenize import word_tokenize
+
+text = "I love natural language processing. I love Python."
+
+words = word_tokenize(text.lower())
+
+fdist = FreqDist(words)
+
+total_words = len(words)
+
+print("Unigram Probabilities:")
+for word in fdist:
+    probability = fdist[word] / total_words
+    print(word, ":", probability)

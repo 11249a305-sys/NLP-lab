@@ -1,0 +1,25 @@
+
+import nltk
+import matplotlib.pyplot as plt
+from nltk import FreqDist
+from nltk.corpus import gutenberg
+# Download corpus
+nltk.download('gutenberg')
+# Load corpus
+words = gutenberg.words('austen-emma.txt')
+words = [w.lower() for w in words if w.isalpha()]
+# Calculate frequency distribution
+fdist = FreqDist(words)
+# Get top 10 words
+top10 = fdist.most_common(10)
+words_list = [item[0] for item in top10]
+frequencies = [item[1] for item in top10]
+# Plot bar chart
+plt.figure(figsize=(10, 5))
+plt.bar(words_list, frequencies, color='skyblue')
+plt.xlabel("Words")
+plt.ylabel("Frequency")
+plt.title("Top 10 Unigram Frequencies")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()

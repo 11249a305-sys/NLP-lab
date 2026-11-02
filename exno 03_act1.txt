@@ -1,0 +1,16 @@
+import re
+
+text = """
+Contact: student@gmail.com
+Mobile: 9876543210
+Website: https://www.google.com
+Another email: abc@gmail.com
+"""
+
+emails = re.findall(r'[\w.-]+@[\w.-]+\.\w+', text)
+mobile = re.findall(r'\b[6-9]\d{9}\b', text)
+urls = re.findall(r'https?://\S+', text)
+
+print("Email IDs:", emails)
+print("Mobile Numbers:", mobile)
+print("URLs:", urls)

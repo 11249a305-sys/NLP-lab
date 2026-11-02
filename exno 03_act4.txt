@@ -1,0 +1,18 @@
+import re
+
+resume = """
+Name: Arun Kumar
+Email: arun@gmail.com
+Phone: 9876543210
+Skills: Python, Java, Machine Learning, NLP
+"""
+
+name = re.search(r'Name:\s*(.*)', resume)
+email = re.search(r'[\w.-]+@[\w.-]+\.\w+', resume)
+phone = re.search(r'\b[6-9]\d{9}\b', resume)
+skills = re.search(r'Skills:\s*(.*)', resume)
+
+print("Name:", name.group(1))
+print("Email:", email.group())
+print("Phone:", phone.group())
+print("Skills:", skills.group(1))

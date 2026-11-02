@@ -1,0 +1,22 @@
+# Compare Grammar and Statistical Models
+
+grammar_sentences = [
+    "I like NLP",
+    "I like Python",
+    "I study NLP"
+]
+
+statistical_sentences = [
+    "I like NLP",
+    "I like Python"
+]
+
+print("Grammar-Based Model:")
+
+for sentence in grammar_sentences:
+    print(sentence)
+
+print("\nStatistical Model:")
+
+for sentence in statistical_sentences:
+    print(sentence)

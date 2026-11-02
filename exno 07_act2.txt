@@ -1,0 +1,16 @@
+from nltk import word_tokenize
+from nltk.tag import RegexpTagger
+patterns = [
+    (r'.*ing$', 'VBG'),
+    (r'.*ed$', 'VBD'),
+    (r'.*ly$', 'RB'),       # cue 1: Adverbs
+    (r'.*ous$', 'JJ'),      # cue 2: Adjectives
+    (r'.*ness$', 'NN'),     # cue 3: Nouns
+    (r'.*ment$', 'NN'),     # cue 4: Nouns
+    (r'.*s$', 'NNS'),       # cue 5: Plural nouns
+    (r'.*', 'NN'),          # default tag
+]
+tagger = RegexpTagger(patterns)
+paragraph = "The little girl quickly finished her homework before dinner. She was happily playing with her friends in the garden."
+tokens = word_tokenize(paragraph)
+print(tagger.tag(tokens))
